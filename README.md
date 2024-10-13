@@ -1,4 +1,4 @@
-# AngryBirds-v1.0
+# Angry Birds Game
 
 
 class ReadMe {<br />
