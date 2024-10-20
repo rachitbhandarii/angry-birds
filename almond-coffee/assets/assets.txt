@@ -1,1 +1,10 @@
-libgdx.png
+loadgamebtn.png
+5.png
+bgm.mp3
+exitbtn.png
+splashscreen.png
+defeatbg.png
+mainmenubg.png
+gameplaybg.png
+victorybg.png
+startgamebtn.png
