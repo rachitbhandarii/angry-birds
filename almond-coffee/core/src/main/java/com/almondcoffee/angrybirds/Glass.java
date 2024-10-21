@@ -3,9 +3,9 @@ package com.almondcoffee.angrybirds;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class Red extends Birdie{
+public class Glass extends Material{
 
-    public Red(){
-        bird = new Sprite(new Texture("birdred.png"));
+    public Glass(){
+        material = new Sprite(new Texture("glass.png"));
     }
 }
