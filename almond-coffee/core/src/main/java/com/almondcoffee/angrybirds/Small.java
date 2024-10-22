@@ -6,6 +6,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class Small extends Piggie {
 
     public Small() {
-        pig = new Sprite(new Texture("pig.png"));
+        pig.setSize(0.75f,0.75f);
+    }
+
+    public Small(float x, float y) {
+        pig.setSize(0.6f,0.6f);
+        setPosition(x, y);
     }
 }

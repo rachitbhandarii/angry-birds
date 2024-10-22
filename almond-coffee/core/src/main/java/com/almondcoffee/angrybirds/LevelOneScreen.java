@@ -10,12 +10,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.util.ArrayList;
+
 public class LevelOneScreen implements Screen {
     final AngryBirds game;
     public SpriteBatch batch;
     Sprite bg;
     Sprite pauseBtn;
+    Sprite retryBtn;
     Vector2 touchPos;
+    Structure struct;
+    ArrayList<Birdie> birdies;
+    Catapult catapult;
 
     public LevelOneScreen(AngryBirds game) {
         this.game = game;
@@ -23,9 +29,18 @@ public class LevelOneScreen implements Screen {
         bg = new Sprite( new Texture("gameplaybg.png"));
         bg.setSize(game.viewport.getWorldWidth(),game.viewport.getWorldHeight());
         pauseBtn = new Sprite( new Texture("pausebtn.png"));
-        pauseBtn.setSize(1,1);
+        pauseBtn.setSize(1.2f,0.9f);
         pauseBtn.setPosition(0.25f, game.viewport.getWorldHeight()-1.2f);
+        retryBtn = new Sprite( new Texture("retrybtn.png"));
+        retryBtn.setSize(0.8f,0.8f);
+        retryBtn.setPosition(1.5f, game.viewport.getWorldHeight()-1.2f);
         touchPos = new Vector2();
+        struct = new Structure();
+        birdies = new ArrayList<>();
+        birdies.add(new Red(0f,1));
+        birdies.add(new Blue(2.25f,1));
+        birdies.add(new Yellow(1f,1));
+        catapult = new Catapult();
     }
 
     @Override
@@ -45,9 +60,13 @@ public class LevelOneScreen implements Screen {
             System.out.println("Touch detected at: (" + Gdx.input.getX() + ", " + Gdx.input.getY() + ")");
             game.viewport.unproject(touchPos);
             System.out.println("Unprojected to: (" + touchPos.x + ", " + touchPos.y + ")");
-            if (touchPos.x >= 0.25f && touchPos.x <= 1.2f && touchPos.y >= game.viewport.getWorldHeight()-1.2f && touchPos.y <= game.viewport.getWorldHeight()-0.25f) {
+            if (touchPos.x >= 0.25f && touchPos.x <= 1.45f && touchPos.y >= game.viewport.getWorldHeight()-1.2f && touchPos.y <= game.viewport.getWorldHeight()-0.3f) {
                 dispose();
                 game.setScreen(new PauseScreen(game));
+            }
+            if (touchPos.x >= 1.5f && touchPos.x <= 2.3f && touchPos.y >= game.viewport.getWorldHeight()-1.2f && touchPos.y <= game.viewport.getWorldHeight()-0.4f) {
+                dispose();
+                game.setScreen(new LevelOneScreen(game));
             }
         }
         // only for testing..............................................
@@ -74,6 +93,12 @@ public class LevelOneScreen implements Screen {
         batch.begin();
         bg.draw(batch);
         pauseBtn.draw(batch);
+        retryBtn.draw(batch);
+        struct.draw(batch);
+        for (Birdie birdie:birdies){
+            birdie.draw(batch);
+        }
+        catapult.draw(batch);
         batch.end();
     }
 
