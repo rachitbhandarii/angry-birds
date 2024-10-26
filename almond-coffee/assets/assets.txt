@@ -10,6 +10,11 @@ exitbtn.png
 flower.png
 gameplaybg.png
 glass.png
+glass.webp
+gradle.properties
+gradlew
+gradlew.bat
+loadgamebtn.png
 mainmenubg.png
 mainmenubtn.png
 newgamebtn.png
@@ -20,8 +25,12 @@ pig.PNG
 resumebtn.png
 resumegamebtn.png
 retrybtn.png
+settings.gradle
 splashscreen.png
+startgamebtn.png
 stone.png
+stone.webp
 tryagainbtn.png
 victorybg.png
 wood.png
+wood.webp
