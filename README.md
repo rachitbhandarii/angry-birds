@@ -10,5 +10,5 @@ class ReadMe {<br />
 The project code is sufficiently easy to setup, run, and test:
   - Basic libGDX setup should be there.
   - Download and open the project in any IDE.
-  - Navigate to almond-coffee/lwjgl3/src/main/java/com/almondcoffee/angrybirds/lwjgl3/Lwjgl3Launcher.java
-  - Build and run using the code [java Lwjg13Launcher] , and you're ready to go!
+  - Navigate to the folder to access the launcher using the command `cd almond-coffee`
+  - Build and run using the command `gradle run` , and you're ready to go!
