@@ -99,6 +99,6 @@ public class VictoryScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
     }
 }

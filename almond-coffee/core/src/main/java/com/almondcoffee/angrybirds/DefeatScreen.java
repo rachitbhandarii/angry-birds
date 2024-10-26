@@ -99,6 +99,6 @@ public class DefeatScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
     }
 }
