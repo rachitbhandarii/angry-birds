@@ -20,7 +20,7 @@ public class SplashScreen implements Screen {
         this.game = game;
         batch = new SpriteBatch();
         splash = new Sprite( new Texture("splashscreen.png"));
-        splash.setSize(game.viewport.getWorldWidth(),game.viewport.getWorldHeight());
+        splash.setSize(game.getViewport().getWorldWidth(),game.getViewport().getWorldHeight());
     }
 
     @Override
@@ -46,8 +46,8 @@ public class SplashScreen implements Screen {
 
     private void draw() {
         ScreenUtils.clear(0, 0, 0, 1, true);
-        game.viewport.apply();
-        batch.setProjectionMatrix(game.viewport.getCamera().combined);
+        game.getViewport().apply();
+        batch.setProjectionMatrix(game.getViewport().getCamera().combined);
 
         batch.begin();
         splash.draw(batch);

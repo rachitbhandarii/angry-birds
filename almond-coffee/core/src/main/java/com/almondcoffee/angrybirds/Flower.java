@@ -6,6 +6,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Flower {
     Sprite flower;
+    public void setContained(Object contained) {
+        this.contained = contained;
+    }
+
+    boolean isOpen;
+    float timer;
+    Object contained;
 
     public Flower(){
         flower = new Sprite(new Texture("flower.png"));
@@ -26,5 +33,34 @@ public class Flower {
     public void draw(SpriteBatch batch){
         flower.draw(batch);
     }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
+
+    public Sprite getFlower() {
+        return flower;
+    }
+
+    public void setFlower(Sprite flower) {
+        this.flower = flower;
+    }
+
+    public float getTimer() {
+        return timer;
+    }
+
+    public void setTimer(float timer) {
+        this.timer = timer;
+    }
+
+    public Object getContained() {
+        return contained;
+    }
+
 
 }

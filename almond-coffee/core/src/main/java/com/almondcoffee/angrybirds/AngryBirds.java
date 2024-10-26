@@ -6,8 +6,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.Gdx;
 
 public class AngryBirds extends Game {
-    FitViewport viewport;
-    Music bgm;
+    private FitViewport viewport;
+    private Music bgm;
 
     @Override
     public void create() {
@@ -34,4 +34,19 @@ public class AngryBirds extends Game {
         viewport.update(width, height, true);
     }
 
+    public FitViewport getViewport() {
+        return viewport;
+    }
+
+    public void setViewport(FitViewport viewport) {
+        this.viewport = viewport;
+    }
+
+    public Music getBgm() {
+        return bgm;
+    }
+
+    public void setBgm(Music bgm) {
+        this.bgm = bgm;
+    }
 }

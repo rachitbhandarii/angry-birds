@@ -21,13 +21,13 @@ public class VictoryScreen implements Screen {
     public VictoryScreen(final AngryBirds game){
         batch = new SpriteBatch();
         bg = new Sprite(new Texture("victorybg.png"));
-        bg.setSize(game.viewport.getWorldWidth(),game.viewport.getWorldHeight());
+        bg.setSize(game.getViewport().getWorldWidth(),game.getViewport().getWorldHeight());
         nextLevelBtn = new Sprite(new Texture("nextlevelbtn.png"));
         nextLevelBtn.setSize(4,2);
         nextLevelBtn.setPosition(0.25f, 0.25f);
         mainMenuBtn = new Sprite(new Texture("mainmenubtn.png"));
         mainMenuBtn.setSize(4,2);
-        mainMenuBtn.setPosition(game.viewport.getWorldWidth()-4.25f, 0.25f);
+        mainMenuBtn.setPosition(game.getViewport().getWorldWidth()-4.25f, 0.25f);
         this.game = game;
         touchPos = new Vector2();
     }
@@ -37,22 +37,27 @@ public class VictoryScreen implements Screen {
 
     @Override
     public void render(float v) {
-        input();
+        try{
+            input();
+        }
+        catch(UnableToContinueException e){
+            System.out.println(e.getMessage());
+        }
         logic();
         draw();
     }
 
-    private void input() {
+    private void input() throws UnableToContinueException{
         if (Gdx.input.justTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY());
             System.out.println("Touch detected at: (" + Gdx.input.getX() + ", " + Gdx.input.getY() + ")");
-            game.viewport.unproject(touchPos);
+            game.getViewport().unproject(touchPos);
             System.out.println("Unprojected to: (" + touchPos.x + ", " + touchPos.y + ")");
             if (touchPos.x >= 0.25f && touchPos.x <= 4.25f && touchPos.y >= 0.25f && touchPos.y <= 2.25f) {
                 dispose();
                 game.setScreen(new LevelOneScreen(game));
             }
-            else if (touchPos.x >= game.viewport.getWorldWidth()-4.25f && touchPos.x <= game.viewport.getWorldWidth()-0.25f && touchPos.y >= 0.25f && touchPos.y <= 2.25f) {
+            else if (touchPos.x >= game.getViewport().getWorldWidth()-4.25f && touchPos.x <= game.getViewport().getWorldWidth()-0.25f && touchPos.y >= 0.25f && touchPos.y <= 2.25f) {
                 dispose();
                 game.setScreen(new MainMenuScreen(game));
             }
@@ -65,8 +70,8 @@ public class VictoryScreen implements Screen {
 
     private void draw() {
         ScreenUtils.clear(Color.BLACK);
-        game.viewport.apply();
-        batch.setProjectionMatrix(game.viewport.getCamera().combined);
+        game.getViewport().apply();
+        batch.setProjectionMatrix(game.getViewport().getCamera().combined);
 
         batch.begin();
         bg.draw(batch);

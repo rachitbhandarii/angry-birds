@@ -25,16 +25,16 @@ public class MainMenuScreen implements Screen {
         this.game = game;
         batch = new SpriteBatch();
         bg = new Sprite( new Texture("mainmenubg.png"));
-        bg.setSize(game.viewport.getWorldWidth(),game.viewport.getWorldHeight());
+        bg.setSize(game.getViewport().getWorldWidth(),game.getViewport().getWorldHeight());
         exitBtn = new Sprite( new Texture("exitbtn.png"));
         exitBtn.setSize(2,1);
         exitBtn.setPosition(1,1);
         startGameBtn = new Sprite( new Texture("newgamebtn.png"));
         startGameBtn.setSize(4,2);
-        startGameBtn.setPosition(game.viewport.getWorldWidth()/2-2,(0.65f)*game.viewport.getWorldHeight()-1);
+        startGameBtn.setPosition(game.getViewport().getWorldWidth()/2-2,(0.65f)*game.getViewport().getWorldHeight()-1);
         resumeGameBtn = new Sprite( new Texture("resumegamebtn.png"));
         resumeGameBtn.setSize(4,2);
-        resumeGameBtn.setPosition(game.viewport.getWorldWidth()/2-2,(0.35f)*game.viewport.getWorldHeight()-1);
+        resumeGameBtn.setPosition(game.getViewport().getWorldWidth()/2-2,(0.35f)*game.getViewport().getWorldHeight()-1);
         touchPos = new Vector2();
     }
 
@@ -44,24 +44,29 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        input();
+        try{
+            input();
+        }
+        catch(UnableToExitException e){
+            System.out.println(e.getMessage());
+        }
         logic();
         draw();
     }
 
 
-    private void input() {
+    private void input() throws UnableToExitException {
         if (Gdx.input.justTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY());
             System.out.println("Touch detected at: (" + Gdx.input.getX() + ", " + Gdx.input.getY() + ")");
-            game.viewport.unproject(touchPos);
+            game.getViewport().unproject(touchPos);
             System.out.println("Unprojected to: (" + touchPos.x + ", " + touchPos.y + ")");
-            if (touchPos.x >= game.viewport.getWorldWidth()/2-2 && touchPos.x <= game.viewport.getWorldWidth()/2+2 && touchPos.y >= (0.65f)*game.viewport.getWorldHeight()-1 && touchPos.y <= (0.65f)*game.viewport.getWorldHeight()+1) {
+            if (touchPos.x >= game.getViewport().getWorldWidth()/2-2 && touchPos.x <= game.getViewport().getWorldWidth()/2+2 && touchPos.y >= (0.65f)*game.getViewport().getWorldHeight()-1 && touchPos.y <= (0.65f)*game.getViewport().getWorldHeight()+1) {
                 dispose();
                 game.setScreen(new LevelOneScreen(game));
             }
             //for now, as there's only one level, that would be loaded
-            else if (touchPos.x >= game.viewport.getWorldWidth()/2-2 && touchPos.x <= game.viewport.getWorldWidth()/2+2 && touchPos.y >= (0.35f)*game.viewport.getWorldHeight()-1 && touchPos.y <= (0.35f)*game.viewport.getWorldHeight()+1) {
+            else if (touchPos.x >= game.getViewport().getWorldWidth()/2-2 && touchPos.x <= game.getViewport().getWorldWidth()/2+2 && touchPos.y >= (0.35f)*game.getViewport().getWorldHeight()-1 && touchPos.y <= (0.35f)*game.getViewport().getWorldHeight()+1) {
                 dispose();
                 game.setScreen(new LevelOneScreen(game));
             }
@@ -77,8 +82,8 @@ public class MainMenuScreen implements Screen {
 
     private void draw() {
         ScreenUtils.clear(0, 0, 0, 1, true);
-        game.viewport.apply();
-        batch.setProjectionMatrix(game.viewport.getCamera().combined);
+        game.getViewport().apply();
+        batch.setProjectionMatrix(game.getViewport().getCamera().combined);
 
         batch.begin();
         bg.draw(batch);

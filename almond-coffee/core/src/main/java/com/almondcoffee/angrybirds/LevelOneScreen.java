@@ -27,13 +27,13 @@ public class LevelOneScreen implements Screen {
         this.game = game;
         batch = new SpriteBatch();
         bg = new Sprite( new Texture("gameplaybg.png"));
-        bg.setSize(game.viewport.getWorldWidth(),game.viewport.getWorldHeight());
+        bg.setSize(game.getViewport().getWorldWidth(),game.getViewport().getWorldHeight());
         pauseBtn = new Sprite( new Texture("pausebtn.png"));
         pauseBtn.setSize(1.2f,0.9f);
-        pauseBtn.setPosition(0.25f, game.viewport.getWorldHeight()-1.2f);
+        pauseBtn.setPosition(0.25f, game.getViewport().getWorldHeight()-1.2f);
         retryBtn = new Sprite( new Texture("retrybtn.png"));
         retryBtn.setSize(0.8f,0.8f);
-        retryBtn.setPosition(1.5f, game.viewport.getWorldHeight()-1.2f);
+        retryBtn.setPosition(1.5f, game.getViewport().getWorldHeight()-1.2f);
         touchPos = new Vector2();
         struct = new Structure();
         birdies = new ArrayList<>();
@@ -49,22 +49,27 @@ public class LevelOneScreen implements Screen {
 
     @Override
     public void render(float v) {
-        input();
+        try{
+            input();
+        }
+        catch(UnableToPauseException | UnableToRestartException e){
+            System.out.println(e.getMessage());
+        }
         logic();
         draw();
     }
 
-    private void input() {
+    private void input() throws UnableToPauseException,UnableToRestartException{
         if (Gdx.input.justTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY());
             System.out.println("Touch detected at: (" + Gdx.input.getX() + ", " + Gdx.input.getY() + ")");
-            game.viewport.unproject(touchPos);
+            game.getViewport().unproject(touchPos);
             System.out.println("Unprojected to: (" + touchPos.x + ", " + touchPos.y + ")");
-            if (touchPos.x >= 0.25f && touchPos.x <= 1.45f && touchPos.y >= game.viewport.getWorldHeight()-1.2f && touchPos.y <= game.viewport.getWorldHeight()-0.3f) {
+            if (touchPos.x >= 0.25f && touchPos.x <= 1.45f && touchPos.y >= game.getViewport().getWorldHeight()-1.2f && touchPos.y <= game.getViewport().getWorldHeight()-0.3f) {
                 dispose();
                 game.setScreen(new PauseScreen(game));
             }
-            if (touchPos.x >= 1.5f && touchPos.x <= 2.3f && touchPos.y >= game.viewport.getWorldHeight()-1.2f && touchPos.y <= game.viewport.getWorldHeight()-0.4f) {
+            if (touchPos.x >= 1.5f && touchPos.x <= 2.3f && touchPos.y >= game.getViewport().getWorldHeight()-1.2f && touchPos.y <= game.getViewport().getWorldHeight()-0.4f) {
                 dispose();
                 game.setScreen(new LevelOneScreen(game));
             }
@@ -87,8 +92,8 @@ public class LevelOneScreen implements Screen {
 
     private void draw() {
         ScreenUtils.clear(0, 0, 0, 1, true);
-        game.viewport.apply();
-        batch.setProjectionMatrix(game.viewport.getCamera().combined);
+        game.getViewport().apply();
+        batch.setProjectionMatrix(game.getViewport().getCamera().combined);
 
         batch.begin();
         bg.draw(batch);
