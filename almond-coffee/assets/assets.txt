@@ -1,4 +1,3 @@
-5.png
 bgm.mp3
 birdblue.PNG
 birdred.PNG
@@ -11,9 +10,6 @@ flower.png
 gameplaybg.png
 glass.png
 glass.webp
-gradle.properties
-gradlew
-gradlew.bat
 loadgamebtn.png
 mainmenubg.png
 mainmenubtn.png
@@ -25,7 +21,6 @@ pig.PNG
 resumebtn.png
 resumegamebtn.png
 retrybtn.png
-settings.gradle
 splashscreen.png
 startgamebtn.png
 stone.png
