@@ -8,5 +8,5 @@ class ReadMe {<br />
 }<br />
 
 The project code is sufficiently easy to setup, run, and test:
-  - Navigate to the folder to access the launcher using the command `cd almond-coffee`
+  - Navigate to the folder to access the launcher using the command `cd angry-birds-game-v1.3-main/almond-coffee`
   - Build and run using the command `gradle run` , and you're ready to go!
