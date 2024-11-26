@@ -12,9 +12,9 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.Timer;
 
 public class SplashScreen implements Screen {
-    final AngryBirds game;
-    public SpriteBatch batch;
-    Sprite splash;
+    private final AngryBirds game;
+    private SpriteBatch batch;
+    private Sprite splash;
 
     public SplashScreen(final AngryBirds game) {
         this.game = game;

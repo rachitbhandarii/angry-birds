@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class Material {
-    Sprite material;
-    float strength;
-    Sound sound;
+    protected Sprite material;
+    protected float strength;
+    protected Sound sound;
 
     public Material(){}
 

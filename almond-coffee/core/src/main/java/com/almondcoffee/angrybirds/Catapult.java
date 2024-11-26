@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Catapult {
-    Sprite catapult;
-    float pullBackStrength;
-    float angle;
+    private Sprite catapult;
+    private float pullBackStrength;
+    private float angle;
 
     public Catapult(){
         catapult = new Sprite(new Texture("catapultstretched.png"));
         catapult.setSize(1.5f,2.5f);
-        catapult.setCenter(3.5f,2);
+        catapult.setCenter(3.5f,2.5f);
     }
 
     public void draw(SpriteBatch batch){

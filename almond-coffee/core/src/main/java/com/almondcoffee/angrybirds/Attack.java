@@ -1,8 +1,8 @@
 package com.almondcoffee.angrybirds;
 
 public class Attack {
-    int impact;
-    AttackType type;
+    private int impact;
+    private AttackType type;
 
     public int getImpact() {
         return impact;

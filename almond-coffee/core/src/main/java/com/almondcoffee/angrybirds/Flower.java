@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Flower {
-    Sprite flower;
+    private Sprite flower;
     public void setContained(Object contained) {
         this.contained = contained;
     }

@@ -12,13 +12,13 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import static java.lang.System.exit;
 
 public class MainMenuScreen implements Screen {
-    final AngryBirds game;
-    public SpriteBatch batch;
-    Sprite bg;
-    Sprite exitBtn;
-    Sprite startGameBtn;
-    Sprite resumeGameBtn;
-    Vector2 touchPos;
+    private final AngryBirds game;
+    private SpriteBatch batch;
+    private Sprite bg;
+    private Sprite exitBtn;
+    private Sprite startGameBtn;
+    private Sprite resumeGameBtn;
+    private Vector2 touchPos;
 
 
     public MainMenuScreen(final AngryBirds game) {

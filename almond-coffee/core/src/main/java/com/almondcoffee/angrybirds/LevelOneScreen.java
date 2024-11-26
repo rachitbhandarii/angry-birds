@@ -13,15 +13,22 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import java.util.ArrayList;
 
 public class LevelOneScreen implements Screen {
-    final AngryBirds game;
-    public SpriteBatch batch;
-    Sprite bg;
-    Sprite pauseBtn;
-    Sprite retryBtn;
-    Vector2 touchPos;
-    Structure struct;
-    ArrayList<Birdie> birdies;
-    Catapult catapult;
+    private final AngryBirds game;
+    private SpriteBatch batch;
+    private Sprite bg;
+    private Sprite pauseBtn;
+    private Sprite retryBtn;
+    private Vector2 touchPos;
+    private Sprite power;
+    private Sprite angle;
+    private Structure struct;
+    private ArrayList<Birdie> birdies;
+    private Birdie currentBird;
+    private boolean isDragging = false;
+    private Vector2 launchVelocity = new Vector2();
+    AngryBirdsPhysics birdPhysics = new AngryBirdsPhysics(new Vector2(200, 300), new Vector2(500, 600), -9.8f);
+
+    private Catapult catapult;
 
     public LevelOneScreen(AngryBirds game) {
         this.game = game;
@@ -37,9 +44,9 @@ public class LevelOneScreen implements Screen {
         touchPos = new Vector2();
         struct = new Structure();
         birdies = new ArrayList<>();
-        birdies.add(new Red(0f,1));
-        birdies.add(new Blue(2.25f,1));
-        birdies.add(new Yellow(1f,1));
+        birdies.add(new Red(0f,0.2f));
+        birdies.add(new Blue(2.25f,0.2f));
+        birdies.add(new Yellow(1f,0.2f));
         catapult = new Catapult();
     }
 
@@ -60,6 +67,18 @@ public class LevelOneScreen implements Screen {
     }
 
     private void input() throws UnableToPauseException,UnableToRestartException{
+//        float deltaTime = Gdx.graphics.getDeltaTime();
+//        birdPhysics.update(deltaTime);
+//
+//// Get bird's updated position
+//        Vector2 birdPos = birdPhysics.getBirdPosition();
+//        batch.draw(birdies.get(0).getBird().getTexture(), birdPos.x - birdies.get(0).getBird().getTexture().getWidth() / 2f, birdPos.y - birdies.get(0).getBird().getTexture().getHeight() / 2f);
+//
+//// Reset if bird goes off-screen
+////        if (birdPos.y < 0 || birdPos.x > Gdx.graphics.getWidth()) {
+////            birdPhysics.reset(new Vector2(200, 300), new Vector2(500, 600));
+////        }
+
         if (Gdx.input.justTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY());
             System.out.println("Touch detected at: (" + Gdx.input.getX() + ", " + Gdx.input.getY() + ")");
@@ -73,6 +92,10 @@ public class LevelOneScreen implements Screen {
                 dispose();
                 game.setScreen(new LevelOneScreen(game));
             }
+//            if (currentBird != null && currentBird.isReady() && catapult.isWithinBounds(touchPos)) {
+//                isDragging = true;
+//                currentBird.setPosition(touchPos.x, touchPos.y); // Move bird to touch point
+//            }
         }
         // only for testing..............................................
         else if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
@@ -83,11 +106,19 @@ public class LevelOneScreen implements Screen {
             dispose();
             game.setScreen(new VictoryScreen(game));
         }
+//        else if (isDragging) {
+//            // Calculate launch velocity when touch is released
+//            isDragging = false;
+//            launchVelocity.set(catapult.getPosition()).sub(currentBird.getPosition()).scl(-1); // Inverse direction
+//            currentBird.launch(launchVelocity);
+//        }
         //.................................................................
     }
 
     private void logic() {
-
+//        if (currentBird != null) {
+//            currentBird.update(Gdx.graphics.getDeltaTime());
+//        }
     }
 
     private void draw() {

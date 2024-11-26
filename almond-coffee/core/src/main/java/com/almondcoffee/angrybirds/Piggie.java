@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class Piggie {
-    Sprite pig;
-    float health;
-    Sound sound;
+    protected Sprite pig;
+    protected float health;
+    protected Sound sound;
 
     public Piggie(){
         pig = new Sprite(new Texture("pig.png"));

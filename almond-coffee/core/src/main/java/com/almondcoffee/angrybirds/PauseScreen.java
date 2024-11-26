@@ -9,12 +9,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class PauseScreen implements Screen {
-    final AngryBirds game;
-    public SpriteBatch batch;
-    Sprite bg;
-    Sprite resumeBtn;
-    Sprite mainMenuBtn;
-    Vector2 touchPos;
+    private final AngryBirds game;
+    private SpriteBatch batch;
+    private Sprite bg;
+    private Sprite resumeBtn;
+    private Sprite mainMenuBtn;
+    private Vector2 touchPos;
 
     public PauseScreen(AngryBirds game) {
         this.game = game;

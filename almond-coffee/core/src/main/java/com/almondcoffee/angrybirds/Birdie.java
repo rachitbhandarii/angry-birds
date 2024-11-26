@@ -3,13 +3,17 @@ package com.almondcoffee.angrybirds;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public abstract class Birdie {
-    Sprite bird;
-    float speed;
-    Attack attack;
-    Attack spAttack;
-    Sound sound;
+    protected Sprite bird;
+    protected float speed;
+    protected Attack attack;
+    protected Attack spAttack;
+    protected Sound sound;
+    protected Vector2 velocity = new Vector2();
+    protected Vector2 acceleration = new Vector2(0, -9.8f); // Gravity
+    protected boolean launched = false;
 
     public Birdie() {}
 
