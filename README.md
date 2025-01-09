@@ -10,4 +10,4 @@ class ReadMe {<br />
 The project code is sufficiently easy to setup, run, and test:
   - Download and extract the zip file and navigate to the extracted folder.
   - Right click and open in the terminal and execute the following command `cd angry-birds-game-v1.3-main/almond-coffee`
-  - Build and run using the command `gradle run` , and you're ready to go!
+  - Build and run using the command `./gradlew run` , and you're ready to go!
